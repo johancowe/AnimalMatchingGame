@@ -1,0 +1,64 @@
+[1mdiff --git a/AnimalMatchingGame/MainPage.xaml b/AnimalMatchingGame/MainPage.xaml[m
+[1mindex 5ad1ce7..9ed659f 100644[m
+[1m--- a/AnimalMatchingGame/MainPage.xaml[m
+[1m+++ b/AnimalMatchingGame/MainPage.xaml[m
+[36m@@ -23,29 +23,36 @@[m
+                 </VerticalStackLayout>[m
+             </Frame>[m
+ [m
+[31m-            <FlexLayout x:Name="AnimalButtons" Wrap="Wrap" MaximumWidthRequest="400" IsVisible="False">[m
+[31m-[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-                <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>[m
+[31m-[m
+[31m-            </FlexLayout>[m
+[32m+[m[32m            <Grid x:Name="AnimalButtons" IsVisible="False" HorizontalOptions="Center"[m
+[32m+[m[32m                  RowDefinitions="100,100,100,100"[m
+[32m+[m[32m                  ColumnDefinitions="100,100,100,100"[m
+[32m+[m[32m                  RowSpacing="5" ColumnSpacing="5">[m
+[32m+[m
+[32m+[m[32m                <!-- Row 0 -->[m
+[32m+[m[32m                <Button Grid.Row="0" Grid.Column="0" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="0" Grid.Column="1" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="0" Grid.Column="2" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="0" Grid.Column="3" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m
+[32m+[m[32m                <!-- Row 1 -->[m
+[32m+[m[32m                <Button Grid.Row="1" Grid.Column="0" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="1" Grid.Column="1" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="1" Grid.Column="2" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="1" Grid.Column="3" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m
+[32m+[m[32m                <!-- Row 2 -->[m
+[32m+[m[32m                <Button Grid.Row="2" Grid.Column="0" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="2" Grid.Column="1" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="2" Grid.Column="2" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="2" Grid.Column="3" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m
+[32m+[m[32m                <!-- Row 3 -->[m
+[32m+[m[32m                <Button Grid.Row="3" Grid.Column="0" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="3" Grid.Column="1" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="3" Grid.Column="2" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m[32m                <Button Grid.Row="3" Grid.Column="3" BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1" FontSize="60" Clicked="Button_Clicked"/>[m
+[32m+[m
+[32m+[m[32m            </Grid>[m
+ [m
+         </VerticalStackLayout>[m
+         [m

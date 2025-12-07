@@ -116,8 +116,8 @@ namespace AnimalMatchingGame
                 int index = Random.Shared.Next(animalEmoji.Count);
                 string nextEmoji = animalEmoji[index];
                 button.Text = nextEmoji;
+                button.BackgroundColor = Colors.LightBlue;
                 animalEmoji.RemoveAt(index);
-
             }
 
             Dispatcher.StartTimer(TimeSpan.FromSeconds(.1), TimerTick);

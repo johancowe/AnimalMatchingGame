@@ -12,6 +12,17 @@
             
             <Label x:Name="TimeElapsed" Text="Time Elapsed: 0.0 seconds" FontSize="Large" />
 
+            <!-- Leaderboard Section -->
+            <Frame x:Name="LeaderboardFrame" BackgroundColor="#F5F5F5" BorderColor="#CCCCCC" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🏆 Top 3 Beste Tijden" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <BoxView HeightRequest="1" Color="#CCCCCC" />
+                    <Label x:Name="Score1Label" Text="1. ---" FontSize="Small" />
+                    <Label x:Name="Score2Label" Text="2. ---" FontSize="Small" />
+                    <Label x:Name="Score3Label" Text="3. ---" FontSize="Small" />
+                </VerticalStackLayout>
+            </Frame>
+
             <FlexLayout x:Name="AnimalButtons" Wrap="Wrap" MaximumWidthRequest="400" IsVisible="False">
 
                 <Button BackgroundColor="LightBlue" BorderColor="Black" BorderWidth="1"  HeightRequest="100" WidthRequest="100" FontSize="60" Clicked="Button_Clicked"/>

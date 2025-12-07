@@ -1,13 +1,97 @@
 ﻿using System;
+using System.Text.Json;
 using Microsoft.Maui.Controls;
 
 namespace AnimalMatchingGame
 {
     public partial class MainPage : ContentPage
     {
+        private List<LeaderboardEntry> leaderboard = [];
+
+        private static string LeaderboardFilePath =>
+            Path.Combine(FileSystem.AppDataDirectory, "leaderboard.json");
+
         public MainPage()
         {
             InitializeComponent();
+            LoadLeaderboard();
+            UpdateLeaderboardDisplay();
+        }
+
+        private void LoadLeaderboard()
+        {
+            // Toon het pad in Debug output (View > Output > Debug)
+            System.Diagnostics.Debug.WriteLine($"📁 Leaderboard bestand: {LeaderboardFilePath}");
+
+            if (File.Exists(LeaderboardFilePath))
+            {
+                var json = File.ReadAllText(LeaderboardFilePath);
+                leaderboard = JsonSerializer.Deserialize<List<LeaderboardEntry>>(json) ?? [];
+            }
+        }
+
+        private void SaveLeaderboard()
+        {
+            var json = JsonSerializer.Serialize(leaderboard, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(LeaderboardFilePath, json);
+        }
+
+        private bool IsTopThreeTime(double timeInSeconds)
+        {
+            if (leaderboard.Count < 3)
+                return true;
+
+            return timeInSeconds < leaderboard.Max(e => e.TimeInSeconds);
+        }
+
+        private async Task AddScoreToLeaderboard(double timeInSeconds)
+        {
+            string playerName = "Anoniem";
+
+            // Vraag om naam als het een top 3 tijd is
+            if (IsTopThreeTime(timeInSeconds))
+            {
+                var name = await DisplayPromptAsync(
+                    "🏆 Top 3 Tijd!",
+                    $"Je hebt een top 3 tijd behaald: {timeInSeconds:0.0}s\nWat is je naam?",
+                    "OK",
+                    "Annuleren",
+                    "Je naam",
+                    maxLength: 20,
+                    keyboard: Keyboard.Text);
+
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    playerName = name;
+                }
+            }
+
+            var entry = new LeaderboardEntry
+            {
+                PlayerName = playerName,
+                TimeInSeconds = timeInSeconds,
+                AchievedAt = DateTime.Now
+            };
+
+            leaderboard.Add(entry);
+            leaderboard = [.. leaderboard.OrderBy(e => e.TimeInSeconds).Take(3)];
+            SaveLeaderboard();
+            UpdateLeaderboardDisplay();
+        }
+
+        private void UpdateLeaderboardDisplay()
+        {
+            Score1Label.Text = leaderboard.Count > 0
+                ? $"1. {leaderboard[0].PlayerName} - {leaderboard[0].FormattedTime} ({leaderboard[0].FormattedDate})"
+                : "1. ---";
+
+            Score2Label.Text = leaderboard.Count > 1
+                ? $"2. {leaderboard[1].PlayerName} - {leaderboard[1].FormattedTime} ({leaderboard[1].FormattedDate})"
+                : "2. ---";
+
+            Score3Label.Text = leaderboard.Count > 2
+                ? $"3. {leaderboard[2].PlayerName} - {leaderboard[2].FormattedTime} ({leaderboard[2].FormattedDate})"
+                : "3. ---";
         }
 
         private void PlayAgainButton_Clicked(object sender, EventArgs e)
@@ -66,7 +150,7 @@ namespace AnimalMatchingGame
         int matchesFound;
 
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             if (sender is Button buttonClicked)
             {
@@ -93,12 +177,14 @@ namespace AnimalMatchingGame
 
             if (matchesFound == 8)
             {
+                // Voeg score toe aan leaderboard
+                double finalTime = tenthsOfSecondsElapsed / 10.0;
+                await AddScoreToLeaderboard(finalTime);
+
                 AnimalButtons.IsVisible = false;
                 PlayAgainButton.IsVisible = true;
                 matchesFound = 0;
             }
-
-
         }
     }
 }
